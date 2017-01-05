@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
 
-// const parts = require('./webpack.parts');
+const parts = require('./webpack.parts');
 
 const PATHS = {
   src: path.join(__dirname, 'src'),
@@ -37,6 +37,11 @@ module.exports = function(env) {
       plugins: [
         new webpack.NamedModulesPlugin()
       ]
-    }
+    },
+    parts.devServer({
+      // Customize host/port here if needed
+      host: process.env.HOST,
+      port: process.env.PORT
+    })
   );
 };
