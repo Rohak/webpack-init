@@ -11,20 +11,21 @@ const PATHS = {
 };
 
 const common = merge(
-{
-  entry: {
-    app: path.join(PATHS.src,'index')
-  },
-  output: {
-    path: PATHS.build,
-    filename: '[name].js'
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Webpack demo'
-    })
-  ]
-});
+  {
+    entry: {
+      app: path.join(PATHS.src,'index')
+    },
+    output: {
+      path: PATHS.build,
+      filename: '[name].js'
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        title: 'Webpack demo'
+      })
+    ]
+  }
+);
 
 module.exports = function(env) {
   return merge(
