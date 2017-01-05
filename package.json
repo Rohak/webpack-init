@@ -13,8 +13,10 @@
   "author": "Rohak",
   "license": "ISC",
   "devDependencies": {
+    "css-loader": "^0.26.1",
     "eslint": "^3.12.2",
     "html-webpack-plugin": "^2.26.0",
+    "style-loader": "^0.13.1",
     "webpack": "^2.2.0-rc.3",
     "webpack-dev-server": "^2.2.0-rc.0",
     "webpack-merge": "^2.1.0"

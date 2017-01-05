@@ -39,6 +39,8 @@ module.exports = function(env) {
         new webpack.NamedModulesPlugin()
       ]
     },
+
+    parts.loadCSS(),
     parts.devServer({
       // Customize host/port here if needed
       host: process.env.HOST,

@@ -40,3 +40,20 @@ exports.devServer = function(options) {
     ]
   };
 };
+
+exports.loadCSS = function(paths) {
+  return {
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          // Restrict extraction process to the given
+          // paths.
+          include: paths,
+
+          use: ['style-loader', 'css-loader']
+        }
+      ]
+    }
+  };
+};
