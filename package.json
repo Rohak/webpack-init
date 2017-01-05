@@ -1,0 +1,20 @@
+{
+  "name": "webpack-init",
+  "version": "1.0.0",
+  "description": "webpack2.2 setup according to SurviveJS.com, Rohak's version",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --env development",
+    "build": "webpack --env production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Rohak",
+  "license": "ISC",
+  "devDependencies": {
+    "html-webpack-plugin": "^2.26.0",
+    "webpack": "^2.2.0-rc.3",
+    "webpack-dev-server": "^2.2.0-rc.0",
+    "webpack-merge": "^2.1.0"
+  }
+}
