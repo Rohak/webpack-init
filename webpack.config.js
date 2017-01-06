@@ -28,6 +28,15 @@ const common = merge(
 );
 
 module.exports = function(env) {
+  // *************  PRODUCTION  *************
+  if (env === 'production') {
+    return merge(
+      common,
+      parts.extractCSS()
+    );
+  }
+
+  // *************  DEVELOPMENT  *************
   return merge(
     common,
     {
