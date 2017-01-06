@@ -105,6 +105,7 @@ exports.purifyCSS = function(paths) {
 //Juho Vepsäläinen is mistaken in this point:
 //        resolveExtensions: ['.html']
 //if resolveExtensions stays, than PurifyCSS will eliminate 
+//even the 'h1' and 'pure-button' styles used in Hello.js
       })
     ]
   };
