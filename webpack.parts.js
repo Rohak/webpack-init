@@ -110,3 +110,9 @@ exports.purifyCSS = function(paths) {
     ]
   };
 };
+
+exports.generateSourcemaps = function(type) {
+  return {
+    devtool: type
+  };
+};
