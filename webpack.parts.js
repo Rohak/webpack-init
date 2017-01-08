@@ -117,32 +117,6 @@ exports.generateSourcemaps = function(type) {
   };
 };
 
-// this is extractBundles version with explicit vendors list: 
-// exports.extractBundles = function(bundles, options) {
-//   const entry = {};
-//   const names = [];
-
-//   // Set up entries and names.
-//   bundles.forEach(({ name, entries }) => {
-//     if (entries) {
-//       entry[name] = entries;
-//     }
-
-//     names.push(name);
-//   });
-
-//   return {
-//     // Define an entry point needed for splitting.
-//     entry,
-//     plugins: [
-//       // Extract bundles.
-//       new webpack.optimize.CommonsChunkPlugin(
-//         Object.assign({}, options, { names })
-//       )
-//     ]
-//   };
-// };
-
 // this version of extractBundles determines vendor modules automatically:
 exports.extractBundles = function() {
   return {
@@ -163,5 +137,28 @@ exports.extractBundles = function() {
         }
       })
     ]
+  };
+};
+
+exports.loadJavaScript = function(paths) {
+  return {
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          include: paths,
+
+          loader: 'babel-loader',
+          options: {
+            // Enable caching for improved performance during
+            // development.
+            // It uses default OS directory by default. If you need
+            // something more custom, pass a path to it.
+            // I.e., { cacheDirectory: '<path>' }
+            cacheDirectory: true
+          }
+        }
+      ]
+    }
   };
 };
