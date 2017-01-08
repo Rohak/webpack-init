@@ -171,3 +171,16 @@ exports.clean = function(path) {
     ]
   };
 };
+
+// UglifyJsPlugin breaks source-map generation
+// exports.minifyJavaScript = function() {
+//   return {
+//     plugins: [
+//       new webpack.optimize.UglifyJsPlugin({
+//         compress: {
+//           warnings: false
+//         }
+//       })
+//     ]
+//   };
+// };

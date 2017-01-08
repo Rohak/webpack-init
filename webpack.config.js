@@ -33,9 +33,10 @@ module.exports = function(env) {
     return merge(
       common,
       parts.loadJavaScript(PATHS.src),
+      // parts.minifyJavaScript(), // UglifyJsPlugin breaks source-map generation
       parts.extractBundles(),
       parts.clean(PATHS.build),
-      // parts.generateSourcemaps('source-map'),
+      parts.generateSourcemaps('source-map'),
       parts.extractCSS(),
       parts.purifyCSS(PATHS.src)
     );
