@@ -13,6 +13,7 @@
   "author": "Rohak",
   "license": "ISC",
   "devDependencies": {
+    "babel-eslint": "^7.1.1",
     "css-loader": "^0.26.1",
     "eslint": "^3.13.0",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
