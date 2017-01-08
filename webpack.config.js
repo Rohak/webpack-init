@@ -32,7 +32,8 @@ module.exports = function(env) {
   if (env === 'production') {
     return merge(
       common,
-      parts.generateSourcemaps('source-map'),
+      parts.extractBundles(),
+      // parts.generateSourcemaps('source-map'),
       parts.extractCSS(),
       parts.purifyCSS(PATHS.src)
     );
@@ -51,7 +52,7 @@ module.exports = function(env) {
       ]
     },
 
-    parts.generateSourcemaps('eval-source-map'),
+    // parts.generateSourcemaps('eval-source-map'),
     parts.loadCSS(),
     parts.devServer({
       // Customize host/port here if needed

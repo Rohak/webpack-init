@@ -102,10 +102,10 @@ exports.purifyCSS = function(paths) {
 
         // Walk through only html files within node_modules. It
         // picks up .js files by default!
-//Juho Vepsäläinen is mistaken in this point:
-//        resolveExtensions: ['.html']
-//if resolveExtensions stays, than PurifyCSS will eliminate 
-//even the 'h1' and 'pure-button' styles used in Hello.js
+        // !!! Juho Vepsäläinen is mistaken in this point:
+        // resolveExtensions: ['.html']
+        // if resolveExtensions stays, than PurifyCSS will eliminate 
+        // even the 'h1' and 'pure-button' styles used in Hello.js
       })
     ]
   };
@@ -114,5 +114,54 @@ exports.purifyCSS = function(paths) {
 exports.generateSourcemaps = function(type) {
   return {
     devtool: type
+  };
+};
+
+// this is extractBundles version with explicit vendors list: 
+// exports.extractBundles = function(bundles, options) {
+//   const entry = {};
+//   const names = [];
+
+//   // Set up entries and names.
+//   bundles.forEach(({ name, entries }) => {
+//     if (entries) {
+//       entry[name] = entries;
+//     }
+
+//     names.push(name);
+//   });
+
+//   return {
+//     // Define an entry point needed for splitting.
+//     entry,
+//     plugins: [
+//       // Extract bundles.
+//       new webpack.optimize.CommonsChunkPlugin(
+//         Object.assign({}, options, { names })
+//       )
+//     ]
+//   };
+// };
+
+// this version of extractBundles determines vendor modules automatically:
+exports.extractBundles = function() {
+  return {
+    plugins: [
+      // Extract bundles.
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendor',
+        minChunks: (module, count) => {
+          const userRequest = module.userRequest;
+
+          // Modul je externi pokud ma v ceste /node_modules/
+          // Jenomze to by nefungovalo pri pouziti loaders,
+          // protoze cesta k loaderu je soucasti module.userRequest
+          // (a loader je pravdepodobne taky v node_modules),
+          // proto ten workaround se split('!').pop()
+          return typeof userRequest === 'string' 
+            && !!userRequest.split('!').pop().match(/(node_modules)/);
+        }
+      })
+    ]
   };
 };
