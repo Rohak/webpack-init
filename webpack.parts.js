@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 exports.devServer = function(options) {
   return {
@@ -192,6 +193,20 @@ exports.setFreeVariable = function(key, value) {
   return {
     plugins: [
       new webpack.DefinePlugin(env)
+    ]
+  };
+};
+
+exports.compressWithGzip = function() {
+  return {
+    plugins: [
+      new CompressionPlugin({
+        asset: '[path].gz[query]',
+        algorithm: 'gzip',
+        test: /\.js$|\.html$/,
+        threshold: 10240,
+        minRatio: 0.8
+      })
     ]
   };
 };

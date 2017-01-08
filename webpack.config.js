@@ -32,6 +32,7 @@ module.exports = function(env) {
   if (env === 'production') {
     return merge(
       common,
+      parts.compressWithGzip(),
       parts.setFreeVariable('process.env.NODE_ENV','production'),
       parts.loadJavaScript(PATHS.src),
       // parts.minifyJavaScript(), // UglifyJsPlugin breaks source-map generation
