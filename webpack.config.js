@@ -34,6 +34,7 @@ module.exports = function(env) {
       common,
       parts.loadJavaScript(PATHS.src),
       parts.extractBundles(),
+      parts.clean(PATHS.build),
       // parts.generateSourcemaps('source-map'),
       parts.extractCSS(),
       parts.purifyCSS(PATHS.src)
