@@ -6,6 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --env development",
     "build": "webpack --env production",
+    "stats": "webpack --env production --profile --json > stats.json",
     "test:lint": "eslint . --cache",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
