@@ -32,6 +32,18 @@ module.exports = function(env) {
   if (env === 'production') {
     return merge(
       common,
+      {
+        output: {
+          chunkFilename: 'scripts/[chunkhash].js',
+          filename: '[name].[chunkhash].js',
+
+          // Tweak this to match your GitHub project name
+          publicPath: '/webpack-demo/'
+        },
+        plugins: [
+          new webpack.HashedModuleIdsPlugin()
+        ]
+      },
       // parts.compressWithGzip(),
       parts.setFreeVariable('process.env.NODE_ENV','production'),
       parts.loadJavaScript(PATHS.src),
