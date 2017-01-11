@@ -142,6 +142,16 @@ exports.extractBundles = function() {
   };
 };
 
+exports.extractManifest = function() {
+  return {
+    plugins: [
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'manifest'
+      })
+    ]
+  };
+};
+
 exports.loadJavaScript = function(paths) {
   return {
     module: {

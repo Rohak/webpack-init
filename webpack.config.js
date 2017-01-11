@@ -49,6 +49,7 @@ module.exports = function(env) {
       parts.loadJavaScript(PATHS.src),
       parts.minifyJavaScript('source-map'),
       parts.extractBundles(),
+      parts.extractManifest(),
       parts.clean(PATHS.build),
       parts.generateSourcemaps('source-map'),
       parts.extractCSS(),
