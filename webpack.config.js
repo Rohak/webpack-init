@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackTemplate = require('html-webpack-template');
 const merge = require('webpack-merge');
 
 const parts = require('./webpack.parts');
@@ -21,9 +22,16 @@ const common = merge(
     },
     plugins: [
       new HtmlWebpackPlugin({
-        title: 'Webpack demo'
+        template: HtmlWebpackTemplate,
+        title: 'Webpack init',
+        appMountId: 'app',
+        mobile: true,
+        inject: false // html-webpack-template requires this to work
       })
-    ]
+    ],
+    resolve: {
+      extensions: ['.js', '.jsx']
+    }
   }
 );
 
@@ -51,7 +59,7 @@ module.exports = function(env) {
       parts.extractBundles(),
       parts.extractManifest(),
       parts.clean(PATHS.build),
-      parts.generateSourcemaps('source-map'),
+      // parts.generateSourcemaps('source-map'),
       parts.extractCSS(),
       parts.purifyCSS(PATHS.src)
     );
